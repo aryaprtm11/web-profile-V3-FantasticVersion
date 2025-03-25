@@ -125,7 +125,7 @@ export default function Home() {
                 />
                 <AnimatedContent>
                   <div className="">
-                    <a href="google.com"> <InteractiveHoverButton>Let's Connect</InteractiveHoverButton></a>
+                    <a href="#contact"> <InteractiveHoverButton>Let's Connect</InteractiveHoverButton></a>
                   </div>
                 </AnimatedContent>
               </div>
@@ -330,14 +330,14 @@ export default function Home() {
       </AnimatedContent>
 
       <AnimatedContent>
-        <div className="flex justify-center w-full">
-          <div className="text-center max-w-7xl w-full justify-center">
+        <div className="flex justify-center items-center w-full">
+          <div className="text-center max-w-7xl w-full">
             <BlurText
               text="I am always open to opportunities to work together or provide services regarding digital products or want to establish a relationship with me can follow my social media below"
               delay={50}
               animateBy="words"
               direction="top"
-              className="text-white font-poppins text-xl mb-8 w-full max-w-[1000px]"
+              className="text-white font-poppins justify-center text-xl mb-8 mx-auto w-full max-w-[1000px]"
             />
           </div>
         </div>
