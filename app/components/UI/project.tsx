@@ -77,8 +77,8 @@ export function Project() {
                       className="w-full h-48 object-cover rounded-lg" // Consistent image size (fixed height)
                       src={item.img}
                       />
-                      <b className="text-white text-xl text-left mt-4">{item.title}</b>
-                      <p className="text-white text-sm mt-2 text-left">{item.body}</p>
+                      <b className="text-white text-xl text-left mt-4 font-poppins">{item.title}</b>
+                      <p className="text-white text-sm mt-2 text-left font-poppins">{item.body}</p>
                   </div>
                   <div className="mt-6 justify-between flex space-x-4 text-white text-xs">
                       <ShimmerButton background="#474F7A" className="w-auto">

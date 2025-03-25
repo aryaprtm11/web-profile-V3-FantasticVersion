@@ -23,24 +23,22 @@ import {Card, CardHeader, CardBody, CardFooter} from "@heroui/card";
 import { MarqueeDemo } from "./components/UI/exp-card";
 import { BorderBeam } from "./components/UI/border-beam";
 import { Ripple } from "./components/UI/ripple";
-import { ShootingStars } from "./components/UI/shooting-stars";
-import { StarsBackground } from "./components/UI/stars-background";
 import { Globe } from "./components/UI/globe";
 import {Button, ButtonGroup} from "@heroui/button";
 import { Project } from "./components/UI/project";
 import { Certif } from "./components/UI/certif";
 import { Tech } from "./components/UI/tech";
+import { ContactForm } from "./components/UI/form";
+import { IconClouds } from "./components/UI/iconcloud";
 
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState('project');
   return (
-    <div className="min-h-screen w-full overflow-hidden bg-[#251e47]">
+    <div className="min-h-screen w-full overflow-hidden bg-transparent">
       <Ripple
         mainCircleOpacity={1.0}
       />
       <SplashCursor/>
-      <ShootingStars />
-      <StarsBackground />
       <Meteors number={30} />
       <header id="home" className="container mx-auto h-screen">
         <div className="grid grid-cols-12">
@@ -48,10 +46,10 @@ export default function Home() {
           <div className="container mx-auto px-12 py-4 flex justify-between items-center">
             <h1 className="font-shrik text-3xl font-bold text-white">ARYA PRATAMA</h1>
             <ul className="flex space-x-4">
-              <li><a href="#home" className="font-poppins font-bold text-white hover:text-gray-800">About Me</a></li>
-              <li><a href="#experience" className="font-poppins font-bold text-white hover:text-gray-800 ml-4">Experience</a></li>
-              <li><a href="#portofolio" className="font-poppins font-bold text-white hover:text-gray-800 ml-4">Portofolio</a></li>
-              <li><a href="#contact" className="font-poppins font-bold text-white hover:text-gray-800 ml-4">Contact</a></li>
+              <li><a href="#home" className="font-poppins font-bold text-white hover:text-purple-700">About Me</a></li>
+              <li><a href="#experience" className="font-poppins font-bold text-white hover:text-purple-700 ml-4">Experience</a></li>
+              <li><a href="#portofolio" className="font-poppins font-bold text-white hover:text-purple-700 ml-4">Portofolio</a></li>
+              <li><a href="#contact" className="font-poppins font-bold text-white hover:text-purple-700 ml-4">Contact</a></li>
             </ul>
           </div>
         </nav>
@@ -330,54 +328,41 @@ export default function Home() {
           <h2 className="text-4xl font-poppins font-bold text-center mb-3">Contact</h2>
         </GradientText>
       </AnimatedContent>
+
       <AnimatedContent>
         <div className="flex justify-center w-full">
-          <div className="text-center max-w-4xl">
+          <div className="text-center max-w-7xl w-full justify-center">
             <BlurText
               text="I am always open to opportunities to work together or provide services regarding digital products or want to establish a relationship with me can follow my social media below"
               delay={50}
               animateBy="words"
               direction="top"
-              className="text-white font-poppins text-xl mb-8"
+              className="text-white font-poppins text-xl mb-8 w-full max-w-[1000px]"
             />
           </div>
         </div>
       </AnimatedContent>
 
-      <div className="grid grid-flow-col grid-rows-3 gap-4">
-        <div className="col-span-2 ...">
+      <div className="grid lg:grid-cols-2 mt-4">
+        <div className="flex justify-center mx-4">
           <Card
             isBlurred
-            className="border-none bg-background/60 dark:bg-default-100/50 max-w-[400px] m-4 pr-20"
+            className="border-none bg-[#67729D]/30 dark:bg-default-100/50 w-full max-w-[500px] px-6"
             shadow="sm"
           >
             <CardBody>
-            <GradientText
-              colors={["#E4B1F0", "#7E60BF", "#FFE1FF", "#4079ff", "#40ffaa"]}
-              animationSpeed={3}
-              showBorder={false}
-            >
-              <h2 className="text-3xl font-poppins font-bold text-left mb-3">Get in Touch</h2>
-            </GradientText>
-            <div>
-              <form action="">
-                <label htmlFor="name" className="block mb-2">Name</label>
-                <input type="text" id="name" className="border" />
-                <label htmlFor="email">Email</label>
-                <input type="text" />
-                <label htmlFor="subject">Subject</label>
-                <input type="text" />
-                <label htmlFor="Message">Message</label>
-              </form>
-            </div>
-
+              <div>
+                <ContactForm />
+              </div>
             </CardBody>
           </Card>
         </div>
-        <div className="col-span-2 row-span-2 ...">03</div>
-        <div className="row-span-3 ...">01</div>
+        <div className="flex justify-center items-center h-full max-h-[690px]">
+          <IconClouds />
+        </div>
       </div>
     </section>
+    {/* <footer><Copyright>Arya Pratama</Copyright></footer> */}
   </div>
   );
 }
