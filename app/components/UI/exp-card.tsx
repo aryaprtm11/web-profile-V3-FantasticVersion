@@ -41,9 +41,9 @@ const ReviewCard = ({
       className={cn(
         "relative flex flex-col items-center w-80 cursor-pointer overflow-hidden rounded-xl border p-6 shadow-lg",
         // light styles
-        "border-gray-950/[.1] bg-[#67729D] hover:bg-[#7e8cc4]",
+        "border-gray-950/[.1] bg-[#3A366D] hover:bg-[#4A4480]",
         // dark styles
-        "dark:border-gray-50/[.1] bg-[#67729D] hover:bg-[#7e8cc4]"
+        "dark:border-gray-50/[.1] bg-[#3A366D] hover:bg-[#4A4480]"
       )}
     >
       <div className="flex flex-row items-center justify-center mb-4">

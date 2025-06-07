@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, ReactNode } from "react";
+import { useRef, useEffect, useState, ReactNode, useCallback } from "react";
 import { useSpring, animated, SpringConfig } from "@react-spring/web";
 
 interface AnimatedContentProps {
@@ -28,27 +28,55 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
 }) => {
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Debounce function untuk mencegah terlalu banyak state updates
+  const debouncedSetInView = useCallback((value: boolean) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
+      setInView(value);
+    }, delay);
+  }, [delay]);
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          observer.unobserve(element);
-          setTimeout(() => {
-            setInView(true);
-          }, delay);
-        }
+    // Gunakan options yang lebih optimal
+    const observerOptions = {
+      threshold,
+      rootMargin: '50px', // Preload sebelum element terlihat
+    };
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !inView) {
+            debouncedSetInView(true);
+            // Unobserve setelah animasi dimulai untuk mengurangi beban
+            if (observerRef.current) {
+              observerRef.current.unobserve(element);
+            }
+          }
+        });
       },
-      { threshold }
+      observerOptions
     );
 
-    observer.observe(element);
+    observerRef.current.observe(element);
 
-    return () => observer.disconnect();
-  }, [threshold, delay]);
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [threshold, debouncedSetInView, inView]);
 
   const directions: Record<"vertical" | "horizontal", string> = {
     vertical: "Y",
@@ -68,11 +96,22 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
           opacity: 1,
         }
       : undefined,
-    config,
+    config: {
+      ...config,
+      // Tambahkan will-change untuk optimasi GPU
+      tension: config.tension || 50,
+      friction: config.friction || 25,
+    },
   });
 
   return (
-    <animated.div ref={ref} style={springProps}>
+    <animated.div 
+      ref={ref} 
+      style={{
+        ...springProps,
+        willChange: 'transform, opacity', // Optimasi GPU
+      }}
+    >
       {children}
     </animated.div>
   );

@@ -4,6 +4,157 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Hardware acceleration untuk animasi */
+.animate-spin,
+.animate-pulse,
+.animate-bounce {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimasi untuk elemen yang sering beranimasi */
+.animated-element {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Smooth scrolling dengan optimasi */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+}
+
+/* Optimasi untuk blur effects */
+.blur-text {
+  transform: translateZ(0);
+  will-change: filter, transform, opacity;
+}
+
+/* Optimasi untuk canvas elements */
+canvas {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Memory optimizations */
+img, video {
+  object-fit: cover;
+  will-change: auto;
+}
+
+/* Prevent layout shifts */
+.container {
+  contain: layout style paint;
+}
+
+/* Optimasi untuk cards dengan blur */
+.card-blur {
+  backdrop-filter: blur(10px);
+  transform: translateZ(0);
+  will-change: transform, backdrop-filter;
+}
+
+/* Optimasi hover states */
+.hover-optimized {
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+.hover-optimized:hover {
+  transform: translateZ(0) scale(1.05);
+}
+
+/* Optimasi untuk navigation */
+nav {
+  contain: layout style;
+  will-change: transform;
+}
+
+/* Reduce paint pada text animations */
+.text-animation {
+  contain: layout style paint;
+  will-change: transform, opacity;
+}
+
+/* Loading states optimization */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+  will-change: transform;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Optimasi untuk gradient text */
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  will-change: background-position;
+}
+
+/* Mencegah reflow pada animasi */
+.prevent-reflow {
+  contain: strict;
+}
+
+/* Optimasi untuk interactive elements */
+button, a {
+  contain: layout style;
+  will-change: transform;
+}
+
+/* Reduce compositing pada background elements */
+.background-layer {
+  will-change: auto;
+  contain: layout style paint;
+}
+
+/* Critical CSS untuk above-the-fold content */
+.hero-section {
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+/* Optimasi untuk scrolling performance */
+.scroll-container {
+  contain: strict;
+  overflow-anchor: none;
+}
+
+/* Optimasi untuk meteor animations */
+.meteor {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  contain: strict;
+}
+
+/* Optimasi untuk ripple effects */
+.ripple-effect {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+/* Font loading optimization */
+@font-face {
+  font-display: swap;
+}
+
+/* Preconnect untuk external resources */
+link[rel="preconnect"] {
+  crossorigin: anonymous;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -28,19 +28,20 @@ export function Tech() {
           >
             <Card
               isBlurred
-              shadow="lg"
-              className="flex flex-col bg-[#67729D] rounded-lg"
+              key={item.title}
+              className="border-none bg-[#67729D]/30 dark:bg-default-100/50 backdrop-blur-sm group relative overflow-hidden"
+              shadow="sm"
             >
-                <CardBody className="flex flex-col items-center p-4 justify-center flex-1">
-                    <div className="flex flex-col items-center">
-                        <Image
-                        alt={item.title}
-                        className="w-full h-full object-cover rounded-lg"
-                        src={item.img}
-                        />
-                        <b className="text-white text-lg mt-4">{item.title}</b>
-                    </div>
-                </CardBody>
+              <CardBody className="flex flex-col items-center p-4 justify-center flex-1">
+                <div className="flex flex-col items-center">
+                  <Image
+                    alt={item.title}
+                    className="w-full h-full object-cover rounded-lg"
+                    src={item.img}
+                  />
+                  <b className="text-white text-lg mt-4">{item.title}</b>
+                </div>
+              </CardBody>
             </Card>
           </AnimatedContent>
         ))}

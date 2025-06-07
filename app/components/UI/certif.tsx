@@ -46,10 +46,10 @@ export function Certif() {
               threshold={0.2}
           >
               <Card
-              key={index}
               isBlurred
-              shadow="lg"
-              className="flex flex-col bg-[#67729D] rounded-lg"
+              key={index}
+              className="border-none bg-[#67729D]/30 dark:bg-default-100/50 backdrop-blur-sm rounded-lg overflow-hidden hover:scale-105"
+              shadow="sm"
               >
               <CardBody className="flex flex-col p-4 justify-between flex-1">
                   <div className="flex flex-col items-start">
