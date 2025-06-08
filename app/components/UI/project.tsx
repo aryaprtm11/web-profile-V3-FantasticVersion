@@ -128,7 +128,7 @@ export function Project() {
 
   return (
     <div className="max-w-6xl mx-auto px-4">
-      <div className="gap-8 grid grid-cols-2 sm:grid-cols-3">
+      <div className="gap-4 sm:gap-6 md:gap-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {list.map((item, index) => (
           <AnimatedContent
               key={index}

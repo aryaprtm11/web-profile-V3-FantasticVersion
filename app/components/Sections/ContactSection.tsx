@@ -42,7 +42,7 @@ export default function ContactSection() {
           animationSpeed={3}
           showBorder={false}
         >
-          <h2 className="text-4xl font-poppins font-bold text-center mb-3">Contact</h2>
+          <h2 className="text-3xl sm:text-4xl font-poppins font-bold text-center mb-3">Contact</h2>
         </GradientText>
       </AnimatedContent>
 
@@ -54,17 +54,17 @@ export default function ContactSection() {
               delay={50}
               animateBy="words"
               direction="top"
-              className="text-white font-poppins justify-center text-xl mb-8 mx-auto w-full max-w-[1000px]"
+              className="text-white font-poppins justify-center text-lg sm:text-xl mb-8 mx-auto w-full max-w-[1000px]"
             />
           </div>
         </div>
       </AnimatedContent>
 
-      <div className="grid lg:grid-cols-2 mt-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-0 mt-4">
         <div className="flex justify-center mx-4">
           <Card
             isBlurred
-            className="border-none bg-[#67729D]/30 dark:bg-default-100/50 w-full max-w-[500px] px-6 backdrop-blur-sm"
+            className="border-none bg-[#67729D]/30 dark:bg-default-100/50 w-full max-w-[500px] px-4 sm:px-6 backdrop-blur-sm"
             shadow="sm"
           >
             <CardBody>
@@ -79,11 +79,11 @@ export default function ContactSection() {
           <AnimatedContent>
             <Card
               isBlurred
-              className="border-none bg-[#67729D]/30 dark:bg-default-100/50 w-full max-w-[500px] px-6 backdrop-blur-sm"
+              className="border-none bg-[#67729D]/30 dark:bg-default-100/50 w-full max-w-[500px] px-4 sm:px-6 backdrop-blur-sm"
               shadow="sm"
             >
-              <CardBody className="p-6">
-                <h3 className="font-poppins text-xl font-bold text-white mb-4 text-center">Leave a Comment</h3>
+              <CardBody className="p-4 sm:p-6">
+                <h3 className="font-poppins text-lg sm:text-xl font-bold text-white mb-4 text-center">Leave a Comment</h3>
                 <form onSubmit={handleCommentSubmit} className="space-y-4">
                   <div>
                     <input
@@ -91,7 +91,7 @@ export default function ContactSection() {
                       placeholder="Your Name"
                       value={commentForm.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 font-poppins focus:outline-none focus:border-[#FF8F00] focus:ring-1 focus:ring-[#FF8F00] backdrop-blur-sm"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 font-poppins focus:outline-none focus:border-[#FF8F00] focus:ring-1 focus:ring-[#FF8F00] backdrop-blur-sm text-sm sm:text-base"
                       required
                     />
                   </div>
@@ -101,13 +101,13 @@ export default function ContactSection() {
                       rows={4}
                       value={commentForm.comment}
                       onChange={(e) => handleInputChange('comment', e.target.value)}
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 font-poppins resize-none focus:outline-none focus:border-[#FF8F00] focus:ring-1 focus:ring-[#FF8F00] backdrop-blur-sm"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 font-poppins resize-none focus:outline-none focus:border-[#FF8F00] focus:ring-1 focus:ring-[#FF8F00] backdrop-blur-sm text-sm sm:text-base"
                       required
                     />
                   </div>
                   <button
                     type="submit"
-                    className="group/btn relative block h-14 w-full rounded-md bg-gradient-to-br from-blue-950 to-purple-700 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset] font-poppins"
+                    className="group/btn relative block h-12 sm:h-14 w-full rounded-md bg-gradient-to-br from-blue-950 to-purple-700 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset] font-poppins text-sm sm:text-base"
                   >
                     Post Comment &rarr;
                   </button>
@@ -120,32 +120,32 @@ export default function ContactSection() {
           <AnimatedContent>
             <Card
               isBlurred
-              className="border-none bg-[#67729D]/30 dark:bg-default-100/50 w-full max-w-[500px] px-6 backdrop-blur-sm"
+              className="border-none bg-[#67729D]/30 dark:bg-default-100/50 w-full max-w-[500px] px-4 sm:px-6 backdrop-blur-sm"
               shadow="sm"
             >
-              <CardBody className="p-6">
-                <h4 className="font-poppins text-lg font-bold text-white mb-4">Recent Comments</h4>
-                <div className="space-y-4 max-h-80 overflow-y-auto">
+              <CardBody className="p-4 sm:p-6">
+                <h4 className="font-poppins text-base sm:text-lg font-bold text-white mb-4">Recent Comments</h4>
+                <div className="space-y-4 max-h-60 sm:max-h-80 overflow-y-auto">
                   
                   {comments.length === 0 ? (
-                    <div className="text-center py-8">
+                    <div className="text-center py-6 sm:py-8">
                       <div className="text-white/60 font-poppins text-sm">
                         No comments yet. Be the first to leave a comment! 💬
                       </div>
                     </div>
                   ) : (
                     comments.map((comment) => (
-                      <div key={comment.id} className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                      <div key={comment.id} className="bg-white/10 rounded-lg p-3 sm:p-4 backdrop-blur-sm">
                         <div className="flex items-start space-x-3">
-                          <div className={`w-10 h-10 ${comment.color} rounded-full flex items-center justify-center flex-shrink-0`}>
-                            <span className="text-white font-poppins font-bold text-sm">{comment.avatar}</span>
+                          <div className={`w-8 sm:w-10 h-8 sm:h-10 ${comment.color} rounded-full flex items-center justify-center flex-shrink-0`}>
+                            <span className="text-white font-poppins font-bold text-xs sm:text-sm">{comment.avatar}</span>
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center space-x-2 mb-2">
                               <h5 className="font-poppins font-semibold text-white text-sm">{comment.name}</h5>
                               <span className="text-white/60 text-xs font-poppins">{comment.timestamp}</span>
                             </div>
-                            <p className="text-white/90 text-sm font-poppins leading-relaxed">
+                            <p className="text-white/90 text-xs sm:text-sm font-poppins leading-relaxed">
                               {comment.comment}
                             </p>
                           </div>
