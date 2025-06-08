@@ -5,7 +5,7 @@ export function Tech() {
   const list = [
     { title: "Figma", img: "./project-logo/Figma.png" },
     { title: "Html", img: "./project-logo/Html.png" },
-    { title: "CSS", img: "./project-logo/css.png" },
+    { title: "CSS", img: "./project-logo/CSS.png" },
     { title: "Javascript", img: "./project-logo/Js.png" },
     { title: "Tailwind", img: "./project-logo/Tailwind.png" },
     { title: "React JS", img: "./project-logo/React.png" },
@@ -17,7 +17,7 @@ export function Tech() {
     { title: "Dart", img: "./project-logo/dart.png" },
     { title: "Laravel", img: "./project-logo/laravel.png" },
     { title: "Firebase", img: "./project-logo/firebase.png" },
-    { title: "Bootstrap", img: "./project-logo/bootstrap(2).png" },
+    { title: "Bootstrap", img: "./project-logo/Bootstrap(2).png" },
     { title: "MaterialUI", img: "./project-logo/MUI.png" },
     { title: "Arduino IDE", img: "./project-logo/ide.png" },
   ];

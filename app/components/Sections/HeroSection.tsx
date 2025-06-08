@@ -4,7 +4,6 @@ import { useMemo } from 'react';
 import ProfilePhoto from "../ProfilePhoto/ProfilePhoto";
 import SplitText from "../SplitText/SplitText";
 import RotatingText from "../RotatingText/RotatingText";
-import BlurText from "../BlurText/BlurText";
 import AnimatedContent from "../AnimatedContent/AnimatedContent";
 import { InteractiveHoverButton } from "../UI/interactive-hover-button";
 
@@ -76,16 +75,22 @@ export default function HeroSection() {
                   {memoizedRotatingText}
                 </div>
               </AnimatedContent>
-              <BlurText
-                text="I am a student with Informatics Engineering study program and studying at Institut Teknologi Sumatera. 
-                I have a sense of wanting to try something new that can improve my soft skills and hard skills. Not only have an interest in the IT world, 
-                but I also have an interest in the business field. My plan in the next 5 years is to become a Backend Developer. During college I often 
-                participated in several committee activities, volunteered, and also participated in planning a project with my teammates."
-                delay={50}
-                animateBy="words"
-                direction="top"
-                className="text-xl mb-8 font-polta mt-4 mx-auto max-w-xl text-white"
-              />
+              <AnimatedContent
+                distance={100}
+                direction="vertical"
+                reverse={false}
+                config={{ tension: 80, friction: 20 }}
+                initialOpacity={0.2}
+                animateOpacity
+                threshold={0.2}
+              >
+                <p className="text-xl mb-8 font-polta mt-4 mx-auto max-w-xl text-white leading-relaxed">
+                  I am a student with Informatics Engineering study program and studying at Institut Teknologi Sumatera. 
+                  I have a sense of wanting to try something new that can improve my soft skills and hard skills. Not only have an interest in the IT world, 
+                  but I also have an interest in the business field. My plan in the next 5 years is to become a Backend Developer. During college I often 
+                  participated in several committee activities, volunteered, and also participated in planning a project with my teammates.
+                </p>
+              </AnimatedContent>
               <AnimatedContent>
                 <div className="">
                   <a href="#contact"> <InteractiveHoverButton>Let's Connect</InteractiveHoverButton></a>
