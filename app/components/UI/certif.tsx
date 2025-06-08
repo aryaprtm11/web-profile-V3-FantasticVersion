@@ -5,31 +5,31 @@ export function Certif() {
   const list = [
     {
       title: "Python Dasar",
-      img: "./py-dasar.png",
+      img: "./certificate/py-dasar.png",
     },
     {
       title: "Python Lanjutan",
-      img: "./py-lanjut.png",
+      img: "./certificate/py-lanjut.png",
     },
     {
       title: "Python Struktur Data",
-      img: "./py-asd.png",
+      img: "./certificate/py-asd.png",
     },
     {
       title: "Nusa Code",
-      img: "./nusa.png",
+      img: "./certificate/nusa.png",
     },
     {
       title: "Aiesec Local Project",
-      img: "./aiesec-lp.png",
+      img: "./certificate/aiesec-lp.png",
     },
     {
         title: "Aiesec Future Leaders",
-        img: "./aiesec-afl.png",
+        img: "./certificate/aiesec-afl.png",
     },
     {
         title: "Hmif Mengabdi",
-        img: "./hmif.png",
+        img: "./certificate/hmif.png",
     },
   ];
 
