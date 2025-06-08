@@ -70,7 +70,7 @@ export default function ExperienceSection() {
                     <span className="text-xl font-poppins text-white">Total Project</span>
                     <CountUp
                       from={0}
-                      to={5}
+                      to={6}
                       separator=","
                       duration={2}
                       className="text-4xl font-bold text-white"
