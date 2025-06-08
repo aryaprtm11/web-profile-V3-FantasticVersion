@@ -20,12 +20,48 @@ interface ProjectData {
   detailsLink: string;
   fullDescription: string;
   technologies: string[];
-  position: string;
+  position: string[]; // Changed to array to support multiple positions
   tasks: string[];
   duration: string;
   startDate: string;
   endDate: string;
 }
+
+// Mapping untuk tech stack icons
+const techIconMap: { [key: string]: string } = {
+  "PHP": "./project-logo/php.png",
+  "MySQL": "./project-logo/Mysql.png",
+  "Postgresql": "./project-logo/postgresql.png",
+  "HTML": "./project-logo/Html.png",
+  "CSS": "./project-logo/CSS.png",
+  "JavaScript": "./project-logo/Js.png",
+  "Tiled": "./project-logo/tiled.png", // Using tiled as fallback for Unity
+  "C#": "./project-logo/type.png", // Using typescript as fallback for C#
+  "Aseprite": "./project-logo/aseprite.png",
+  "Game Design": "./project-logo/Figma.png", // Using Figma for design
+  "Node.js": "./project-logo/Js.png", // Using JS icon for Node.js
+  "MongoDB": "./project-logo/postgresql.png", // Using postgresql as fallback
+  "Express.js": "./project-logo/Js.png", // Using JS icon for Express
+  "Laravel": "./project-logo/laravel.png",
+  "Bootstrap": "./project-logo/Bootstrap(2).png",
+  "Chart.js": "./project-logo/Js.png", // Using JS icon for Chart.js
+  "Tailwind": "./project-logo/Tailwind.png",
+  "React": "./project-logo/React.png",
+  "TypeScript": "./project-logo/type.png",
+  "Firebase": "./project-logo/firebase.png",
+  "Flutter": "./project-logo/flutter.png",
+  "Dart": "./project-logo/dart.png",
+  "Python": "./project-logo/Python.png",
+  "MaterialUI": "./project-logo/MUI.png",
+  "Figma": "./project-logo/Figma.png",
+  "Arduino": "./project-logo/ide.png",
+  "NextJS": "./project-logo/next.png"
+};
+
+// Function to get tech icon
+const getTechIcon = (techName: string): string | null => {
+  return techIconMap[techName] || null;
+};
 
 export function Project() {
   const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
@@ -35,18 +71,18 @@ export function Project() {
   const list: ProjectData[] = [
     {
       title: "Website Agenda Surat Desa",
-      img: "./agenda.png",
-      images: ["./agenda.png", "./agenda-2.png", "./agenda-3.png"],
+      img: "./project-exp/agenda-surat/Agenda.jpg",
+      images: ["./project-exp/agenda-surat/Agenda-detail-1.jpg", "./project-exp/agenda-surat/Agenda-detail-2.png", "./project-exp/agenda-surat/Agenda-detail-3.png"],
       body: "The project is one of the flagship work programs of my Community Service (KKN) to develop a letter agenda management website in Seloretno village.",
       demoLink: "#",
       detailsLink: "#",
       fullDescription: "This comprehensive letter agenda management system was developed during my Community Service (KKN) program in Seloretno village. The system helps village administrators manage and track official letters efficiently.",
-      technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
-      position: "Full Stack Developer",
-      tasks: ["Merancang database untuk sistem manajemen surat", "Mengembangkan interface admin dan user", "Implementasi sistem tracking surat", "Testing dan deployment aplikasi"],
-      duration: "3 months",
-      startDate: "2023-07-01",
-      endDate: "2023-09-30"
+      technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript", "Laravel"],
+      position: ["Full Stack Developer"],
+      tasks: ["Designing a database for the mail management system“, ”Developing admin and user interfaces", "Implementation of mail tracking system", "Application testing and deployment"],
+      duration: "1 months",
+      startDate: "2025-01-10",
+      endDate: "2025-02-02"
     },
     {
       title: "Gozy Cat",
@@ -56,55 +92,70 @@ export function Project() {
       demoLink: "#",
       detailsLink: "#",
       fullDescription: "A charming 2D pixel art platformer game featuring Gozy Cat as the main character. Players navigate through various levels filled with obstacles, enemies, and collectibles.",
-      technologies: ["Unity", "C#", "Pixel Art", "Game Design"],
-      position: "Game Developer",
-      tasks: ["Merancang level dan gameplay mechanics", "Membuat animasi karakter Gozy Cat", "Implementasi sistem scoring dan collectibles", "Testing dan debugging game"],
-      duration: "4 months",
-      startDate: "2023-01-15",
-      endDate: "2023-05-15"
+      technologies: ["Python", "Aseprite", "Tiled"],
+      position: ["Game Programming"],
+      tasks: ["Implementation levels and gameplay mechanics", "Implementation of assessment and collection system", "Game testing and debugging"],
+      duration: "2 months",
+      startDate: "2024-03-25",
+      endDate: "2024-05-20"
     },
     {
       title: "City Bus",
-      img: "./City Bus.png",
-      images: ["./City Bus.png", "./city-bus-2.png", "./city-bus-3.png"],
+      img: "./project-exp/city-bus/City-Bus.png",
+      images: ["./project-exp/city-bus/city-detail-1.jpg", "./project-exp/city-bus/city-detail-2.jpg", "./project-exp/city-bus/city-detail-3.jpg"],
       body: "City Bus is a public service-themed application that provides ticket booking services for city buses to facilitate the public in booking city bus tickets.",
       demoLink: "#",
       detailsLink: "#",
       fullDescription: "A comprehensive bus ticket booking application designed to modernize public transportation services. The app allows users to book tickets, track buses, and manage their travel efficiently.",
-      technologies: ["React Native", "Node.js", "MongoDB", "Express.js"],
-      position: "Mobile App Developer",
-      tasks: ["Mengembangkan aplikasi mobile dengan React Native", "Membuat REST API untuk booking system", "Integrasi dengan sistem pembayaran", "Implementasi real-time tracking bus"],
+      technologies: ["Figma"],
+      position: ["UI Design"],
+      tasks: ["Designing user interface for bus booking application", "Create wireframe and prototype of booking system", "Designing user experience flow for ticket booking"],
       duration: "5 months",
       startDate: "2024-02-01",
       endDate: "2024-06-30"
     },
     {
-      title: "BeCare",
-      img: "./BeCare.png",
-      images: ["./BeCare.png", "./becare-2.png", "./becare-3.png"],
-      body: "BeCare is a mobile health app that enhances well-being and fosters a supportive community, ready to listen and assist users with their health concerns.",
-      demoLink: "#",
-      detailsLink: "#",
-      fullDescription: "A comprehensive health and wellness mobile application that connects users with healthcare professionals and creates a supportive community for health-related discussions and support.",
-      technologies: ["Flutter", "Firebase", "Dart", "Cloud Functions"],
-      position: "Flutter Developer",
-      tasks: ["Mengembangkan aplikasi mobile dengan Flutter", "Integrasi dengan Firebase untuk real-time chat", "Implementasi sistem konsultasi kesehatan", "Membuat fitur community dan health tracking"],
-      duration: "6 months",
-      startDate: "2023-08-01",
-      endDate: "2024-01-31"
-    },
-    {
       title: "Posyandu Banjar Agung",
-      img: "./banjar.jpg",
-      images: ["./banjar.jpg", "./banjar-2.jpg", "./banjar-3.jpg"],
+      img: "./project-exp/posyandu/PosBan.jpg",
+      images: ["./project-exp/posyandu/PosBan-detail-1.jpg", "./project-exp/posyandu/PosBan-detail-2.jpg", "./project-exp/posyandu/PosBan-detail-3.png"],
       body: "The project is one of the flagship work programs of my Community Service (KKN) to develop a letter agenda management website in Seloretno village.",
       demoLink: "#",
       detailsLink: "#",
-      fullDescription: "A digital health monitoring system developed for Posyandu Banjar Agung to track maternal and child health records, vaccination schedules, and health statistics for the community.",
-      technologies: ["Laravel", "MySQL", "Bootstrap", "Chart.js"],
-      position: "Web Developer",
-      tasks: ["Mengembangkan sistem monitoring kesehatan ibu dan anak", "Membuat dashboard untuk data kesehatan", "Implementasi sistem jadwal vaksinasi", "Training penggunaan sistem ke staff Posyandu"],
+      fullDescription: "The project is one of the flagship work programs of my Community Service (KKN) to develop a letter agenda management website in Seloretno village.",
+      technologies: ["Laravel", "MySQL", "Bootstrap", "Chart.js", "PHP"],
+      position: ["Project Manager", "Backend Developer"],
+      tasks: ["Develop an authentication system for posyandu cadres", "Determine the features needed and develop a development timeline", "Manage communication between the development team and the posyandu.", "Monitoring system and database performance"],
       duration: "3 months",
+      startDate: "2024-10-01",
+      endDate: "2024-12-15"
+    },
+    {
+      title: "Uneeds",
+      img: "./project-exp/uneeds/Uneeds.png",
+      images: ["./project-exp/uneeds/Uneeds-detail-1.jpg", "./project-exp/uneeds/Uneeds-detail-2.jpg", "./project-exp/uneeds/Uneeds-detail-3.jpg"],
+      body: "Uneeds is a productivity management app specifically designed to help college students manage their academic life more effectively and organized.",
+      demoLink: "https://drive.google.com/file/d/1dTL7KOXJ0TUkTiWOJmm7gIY3YjUtRo1h/view?usp=sharing",
+      detailsLink: "https://drive.google.com/file/d/1dTL7KOXJ0TUkTiWOJmm7gIY3YjUtRo1h/view?usp=sharing",
+      fullDescription: "Uneeds is a productivity management app specifically designed to help college students manage their academic life more effectively and organized.",
+      technologies: ["Flutter", "Dart", "Firebase"],
+      position: ["Frontend Developer", "UI/UX Designer"],
+      tasks: ["Developing mobile productivity apps with Flutter", "Design a user-friendly interface", "Implementation of task management feature and lecture schedule", "Integration with Firebase for data synchronization"],
+      duration: "2 months",
+      startDate: "2025-04-02",
+      endDate: "2025-05-31"
+    },
+    {
+      title: "Hidroponic Monitoring System",
+      img: "./project-exp/hidroponic/hidroponic.jpg",
+      images: ["./project-exp/hidroponic/Hidroponic-detail-1.jpg", "./project-exp/hidroponic/Hidroponic-detail-2.jpg", "./project-exp/hidroponic/Hidroponic-detail-3.jpg"],
+      body: "This Indoor hydroponic plant automatic monitoring and maintenance system is to facilitate users or gardeners in caring for their hydroponic plants.",
+      demoLink: "https://hidroponic-monitor.vercel.app/",
+      detailsLink: "https://hidroponic-monitor.vercel.app/",
+      fullDescription: "This hydroponic plant maintenance and monitoring automation system is implemented in a pot that is specially designed to effectively carry out its functionality. Through this automated system, the gardener does not have to struggle in monitoring their hydroponic plants as the system will automatically notify the gardener of hydroponic plant care indicator values such as water volume, water temperature, and solar lighting. These values will later be presented in a website that is specifically created to interact with the gardener.",
+      technologies: ["Arduino", "Firebase", "Tailwind", "React", "NextJS"],
+      position: ["Web Developer", "IoT Developer"],
+      tasks: ["Developing a hydroponic plant monitoring website", "Assembling IoT hydroponic pots with several components", "Developing arduino code so that the function of the IoT can run", "Conduct testing of the circuit"],
+      duration: "1 months",
       startDate: "2023-10-01",
       endDate: "2023-12-31"
     },
@@ -128,7 +179,7 @@ export function Project() {
 
   return (
     <div className="max-w-6xl mx-auto px-4">
-      <div className="gap-4 sm:gap-6 md:gap-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="gap-8 grid grid-cols-2 sm:grid-cols-3">
         {list.map((item, index) => (
           <AnimatedContent
               key={index}
@@ -159,7 +210,15 @@ export function Project() {
                       <p className="text-white text-sm mt-2 text-left font-poppins">{item.body}</p>
                   </div>
                   <div className="mt-6 justify-between flex space-x-4 text-white text-xs">
-                      <ShimmerButton background="#474F7A" className="w-auto">
+                      <ShimmerButton 
+                          background="#474F7A" 
+                          className="w-auto"
+                          onClick={() => {
+                            if (item.demoLink && item.demoLink !== '#') {
+                              window.open(item.demoLink, '_blank');
+                            }
+                          }}
+                      >
                           <FontAwesomeIcon icon={faLaptopCode} style={{color: "#ffffff",}} className="mr-1"/>
                           Demo
                       </ShimmerButton>
@@ -250,14 +309,14 @@ export function Project() {
                 </div>
                 
                 <div>
-                  <h3 className="text-lg font-semibold text-white font-poppins mb-3">Periode Pengerjaan</h3>
+                  <h3 className="text-lg font-semibold text-white font-poppins mb-3">Work Period</h3>
                   <div className="space-y-2">
                     <div className="flex items-center">
-                      <span className="text-white/70 text-sm font-poppins w-20">Mulai:</span>
+                      <span className="text-white/70 text-sm font-poppins w-20">Start:</span>
                       <span className="text-white/90 text-sm font-poppins">{new Date(selectedProject.startDate).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                     </div>
                     <div className="flex items-center">
-                      <span className="text-white/70 text-sm font-poppins w-20">Selesai:</span>
+                      <span className="text-white/70 text-sm font-poppins w-20">End:</span>
                       <span className="text-white/90 text-sm font-poppins">{new Date(selectedProject.endDate).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                     </div>
                   </div>
@@ -268,27 +327,50 @@ export function Project() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-lg font-semibold text-white font-poppins mb-3">Technologies Used</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {selectedProject.technologies.map((tech, index) => {
+                      const iconPath = getTechIcon(tech);
+                      return iconPath ? (
+                        <div 
+                          key={index}
+                          className="bg-white/10 backdrop-blur-sm border border-white/20 p-2 rounded-full hover:bg-white/20 transition-all duration-200 hover:scale-110 group"
+                          title={tech} // Tooltip untuk menampilkan nama teknologi saat hover
+                        >
+                          <Image
+                            src={iconPath}
+                            alt={tech}
+                            className="w-5 h-5 object-contain"
+                          />
+                        </div>
+                      ) : (
+                        // Fallback untuk teknologi yang tidak memiliki icon
+                        <div 
+                          key={index}
+                          className="bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-2 rounded-full text-white text-sm font-poppins hover:bg-white/20 transition-colors duration-200"
+                        >
+                          {tech}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-semibold text-white font-poppins mb-3">Position</h3>
                   <div className="flex flex-wrap gap-2">
-                    {selectedProject.technologies.map((tech, index) => (
+                    {selectedProject.position.map((pos, index) => (
                       <span 
                         key={index}
-                        className="bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-1 rounded-full text-white text-sm font-poppins"
+                        className="text-white/90 text-sm font-poppins bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-2 rounded-full"
                       >
-                        {tech}
+                        {pos}
                       </span>
                     ))}
                   </div>
                 </div>
                 
                 <div>
-                  <h3 className="text-lg font-semibold text-white font-poppins mb-3">Posisi</h3>
-                  <p className="text-white/90 text-sm font-poppins bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-2 rounded-full inline-block">
-                    {selectedProject.position}
-                  </p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-white font-poppins mb-3">Tugas</h3>
+                  <h3 className="text-lg font-semibold text-white font-poppins mb-3">Tasks</h3>
                   <ul className="space-y-2">
                     {selectedProject.tasks.map((task, index) => (
                       <li key={index} className="text-white/90 text-sm font-poppins flex items-center">
@@ -302,7 +384,15 @@ export function Project() {
             </div>
             
             <div className="mt-8 flex gap-4">
-              <ShimmerButton background="#474F7A" className="w-auto px-6">
+              <ShimmerButton 
+                background="#474F7A" 
+                className="w-auto px-6"
+                onClick={() => {
+                  if (selectedProject.demoLink && selectedProject.demoLink !== '#') {
+                    window.open(selectedProject.demoLink, '_blank');
+                  }
+                }}
+              >
                 <FontAwesomeIcon icon={faLaptopCode} className="mr-2"/>
                 Live Demo
               </ShimmerButton>

@@ -36,7 +36,7 @@ export default function PortfolioSection() {
           animationSpeed={3}
           showBorder={false}
         >
-          <h2 className="text-3xl sm:text-4xl font-poppins font-bold text-center mb-3">Portofolio</h2>
+          <h2 className="text-4xl font-poppins font-bold text-center mb-3">Portofolio</h2>
         </GradientText>
       </AnimatedContent>
       <AnimatedContent>
@@ -46,35 +46,35 @@ export default function PortfolioSection() {
             delay={50}
             animateBy="words"
             direction="top"
-            className="text-white font-poppins text-lg sm:text-xl mb-8 text-center"
+            className="text-white font-poppins text-xl mb-8 text-center"
           />
         </div>
       </AnimatedContent>
       
       <AnimatedContent>
-        <div className="flex flex-col sm:flex-row justify-center items-center border-none m-4 mb-8 gap-2 sm:gap-0">
+        <ButtonGroup className="flex justify-center items-center border-none m-4 mb-8">
           <Button
             onClick={() => handleCategoryChange('project')}
-            className={`bg-background/60 hover:bg-[#67729D] dark:bg-default-100/50 p-6 sm:p-12 font-poppins text-white text-base sm:text-xl flex flex-col items-center px-8 sm:px-28 w-full sm:w-auto ${activeCategory === 'project' ? 'bg-[#67729D]' : ''}`}
+            className={`bg-background/60 hover:bg-[#67729D] dark:bg-default-100/50 p-12 font-poppins text-white text-xl flex flex-col items-center px-28 ${activeCategory === 'project' ? 'bg-[#67729D]' : ''}`}
           >
-            <FontAwesomeIcon icon={faTerminal} className="text-lg sm:text-xl mb-2 text-white" />
+            <FontAwesomeIcon icon={faTerminal} className="text-xl mb-2 text-white" />
             Project
           </Button>
           <Button
             onClick={() => handleCategoryChange('certificate')}
-            className={`bg-background/60 hover:bg-[#67729D] dark:bg-default-100/50 p-6 sm:p-12 font-poppins text-white text-base sm:text-xl flex flex-col items-center px-8 sm:px-28 w-full sm:w-auto ${activeCategory === 'certificate' ? 'bg-[#67729D]' : ''}`}
+            className={`bg-background/60 hover:bg-[#67729D] dark:bg-default-100/50 p-12 font-poppins text-white text-xl flex flex-col items-center px-28 ${activeCategory === 'certificate' ? 'bg-[#67729D]' : ''}`}
           >
-            <FontAwesomeIcon icon={faCertificate} className="text-lg sm:text-xl mb-2 text-white" />
+            <FontAwesomeIcon icon={faCertificate} className="text-xl mb-2 text-white" />
             Certificates
           </Button>
           <Button
             onClick={() => handleCategoryChange('techStack')}
-            className={`bg-background/60 hover:bg-[#67729D] dark:bg-default-100/50 p-6 sm:p-12 font-poppins text-white text-base sm:text-xl flex flex-col items-center px-8 sm:px-28 w-full sm:w-auto ${activeCategory === 'techStack' ? 'bg-[#67729D]' : ''}`}
+            className={`bg-background/60 hover:bg-[#67729D] dark:bg-default-100/50 p-12 font-poppins text-white text-xl flex flex-col items-center px-28 ${activeCategory === 'techStack' ? 'bg-[#67729D]' : ''}`}
           >
-            <FontAwesomeIcon icon={faCubes} className="text-lg sm:text-xl mb-2 text-white" />
+            <FontAwesomeIcon icon={faCubes} className="text-xl mb-2 text-white" />
             Tech Stack
           </Button>
-        </div>
+        </ButtonGroup>
       </AnimatedContent>
     
       <div className="flex flex-wrap justify-center gap-8">

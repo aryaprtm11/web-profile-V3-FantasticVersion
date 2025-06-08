@@ -155,46 +155,6 @@ link[rel="preconnect"] {
   crossorigin: anonymous;
 }
 
-/* Responsive optimizations */
-@media screen and (max-width: 768px) {
-  /* Reduce animations on mobile for better performance */
-  .animated-element {
-    animation-duration: 0.2s;
-  }
-  
-  /* Optimize touch targets */
-  button, a {
-    min-height: 44px;
-    min-width: 44px;
-  }
-  
-  /* Reduce blur effects on mobile */
-  .backdrop-blur-md {
-    backdrop-filter: blur(8px);
-  }
-  
-  /* Optimize container widths */
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
-
-/* Ensure images are responsive */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Responsive text utilities */
-.text-responsive {
-  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
-}
-
-.heading-responsive {
-  font-size: clamp(1.5rem, 5vw, 3rem);
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;

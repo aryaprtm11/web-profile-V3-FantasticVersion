@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
@@ -8,11 +8,61 @@ import {
   IconBrandLinkedin,
   IconBrandInstagram,
 } from "@tabler/icons-react";
+// import emailjs from '@emailjs/browser';
+// import { EMAILJS_CONFIG } from '@/lib/emailjs-config';
 
 export function ContactForm() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const form = useRef<HTMLFormElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+    setIsLoading(true);
+    setSubmitStatus('idle');
+    
+    if (form.current) {
+      try {
+        // Create hidden iframe to submit form (bypasses CORS)
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.name = 'contact-form-frame';
+        document.body.appendChild(iframe);
+        
+        // Set form target to iframe
+        form.current.target = 'contact-form-frame';
+        form.current.action = 'https://api.web3forms.com/submit';
+        form.current.method = 'POST';
+        
+        // Submit form to iframe
+        form.current.submit();
+        
+        // Listen for iframe load (indicates form submitted)
+        iframe.onload = () => {
+          setSubmitStatus('success');
+          form.current?.reset();
+          setIsLoading(false);
+          
+          // Clean up
+          document.body.removeChild(iframe);
+        };
+        
+        // Fallback timeout
+        setTimeout(() => {
+          if (iframe.parentNode) {
+            setSubmitStatus('success');
+            form.current?.reset();
+            setIsLoading(false);
+            document.body.removeChild(iframe);
+          }
+        }, 3000);
+        
+      } catch (error) {
+        console.error('Submit Error:', error);
+        setSubmitStatus('error');
+        setIsLoading(false);
+      }
+    }
   };
 
   const github = useRef<HTMLButtonElement>(null);
@@ -25,7 +75,11 @@ export function ContactForm() {
 
   return (
     <div className="">
-      <form className="my-8" onSubmit={handleSubmit}>
+      <form className="my-8" onSubmit={handleSubmit} ref={form}>
+        {/* Web3Forms Configuration - Hidden fields */}
+        <input type="hidden" name="access_key" value="361a30ef-21d6-4c4c-8438-0cd108afc2a0" />
+        <input type="hidden" name="redirect" value="false" />
+        
         <div className="mb-4 w-full">
           <LabelInputContainer>
             <Label htmlFor="name" className="text-white text-xl font-poppins">
@@ -33,9 +87,11 @@ export function ContactForm() {
             </Label>
             <Input
               id="name"
+              name="name"
               placeholder="Tyler"
               type="text"
               className="border-none outline-none w-full bg-[#4c5269]/40"
+              required
             />
           </LabelInputContainer>
         </div>
@@ -45,9 +101,11 @@ export function ContactForm() {
           </Label>
           <Input
             id="email"
+            name="email"
             placeholder="projectmayhem@fc.com"
             type="email"
             className="border-none outline-none w-full bg-[#4c5269]/40"
+            required
           />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
@@ -56,9 +114,11 @@ export function ContactForm() {
           </Label>
           <Input
             id="subject"
+            name="subject"
             placeholder="Discuss about project"
             type="text"
             className="border-none outline-none w-full bg-[#4c5269]/40"
+            required
           />
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
@@ -67,16 +127,44 @@ export function ContactForm() {
           </Label>
           <textarea
             id="message"
+            name="message"
             placeholder="Hello I want to discuss about some project..."
             className="border-1 border-white w-full rounded-lg p-4 resize-none h-32 bg-[#4c5269]/40 text-white font-poppins text-base"
+            required
           />
         </LabelInputContainer>
 
+        {/* Status Messages */}
+        {submitStatus === 'success' && (
+          <div className="mb-4 p-3 bg-green-500/20 border border-green-500/50 rounded-lg text-green-300 text-sm font-poppins">
+            ✅ Pesan berhasil dikirim! Terima kasih telah menghubungi saya.
+          </div>
+        )}
+        
+        {submitStatus === 'error' && (
+          <div className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-300 text-sm font-poppins">
+            ❌ Terjadi kesalahan. Silakan coba lagi atau hubungi langsung via email.
+          </div>
+        )}
+
         <button
-          className="group/btn relative block h-14 w-full rounded-md bg-gradient-to-br from-blue-950 to-purple-700 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
+          className="group/btn relative block h-14 w-full rounded-md bg-gradient-to-br from-blue-950 to-purple-700 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset] disabled:opacity-50 disabled:cursor-not-allowed"
           type="submit"
+          disabled={isLoading}
         >
-          Send Message &rarr;
+          {isLoading ? (
+            <>
+              <span className="inline-flex items-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Mengirim...
+              </span>
+            </>
+          ) : (
+            "Send Message →"
+          )}
           <BottomGradient />
         </button>
 

@@ -10,6 +10,16 @@ export function Tech() {
     { title: "Tailwind", img: "./project-logo/Tailwind.png" },
     { title: "React JS", img: "./project-logo/React.png" },
     { title: "Python", img: "./project-logo/Python.png" },
+    { title: "Php", img: "./project-logo/php.png" },
+    { title: "Typescript", img: "./project-logo/type.png" },
+    { title: "Postgresql", img: "./project-logo/postgresql.png" },
+    { title: "Flutter", img: "./project-logo/flutter.png" },
+    { title: "Dart", img: "./project-logo/dart.png" },
+    { title: "Laravel", img: "./project-logo/laravel.png" },
+    { title: "Firebase", img: "./project-logo/firebase.png" },
+    { title: "Bootstrap", img: "./project-logo/bootstrap(2).png" },
+    { title: "MaterialUI", img: "./project-logo/MUI.png" },
+    { title: "Arduino IDE", img: "./project-logo/ide.png" },
   ];
 
   return (

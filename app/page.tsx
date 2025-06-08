@@ -11,7 +11,7 @@ import ContactSection from "./components/Sections/ContactSection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-transparent">
+    <div className="min-h-screen w-full overflow-hidden bg-transparent">
       <Ripple mainCircleOpacity={0.8} />
       <SplashCursor/>
       <Meteors number={30} />
